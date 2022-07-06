@@ -1,0 +1,169 @@
+<div class="card border border-primary">
+  <div class="card-header bg-primary text-white fw-bold">
+    Template Driven Form
+  </div>
+  <div class="card-body">
+    <form #frmUser="ngForm" (ngSubmit)="onSubmitFrom(frmUser.value)">
+      <div class="form-group mb-3">
+        <label for="txtUsername">Username: </label>
+        <input
+          type="text"
+          id="txtUsername"
+          name="txtUsername"
+          minlength="3"
+          maxlength="20"
+          required="required"
+          class="form-control mb-2"
+          [(ngModel)]="user.username"
+          #username="ngModel"
+        />
+        <span
+          class="badge bg-danger"
+          *ngIf="(username.dirty || username.touched) && username.errors?.['required']"
+        >
+          Vui lòng nhập username
+        </span>
+        <span
+          class="badge bg-danger"
+          *ngIf="(username.dirty || username.touched) && username.errors?.['minlength']"
+        >
+          Username phải có độ dài ít nhất 3 kí tự
+        </span>
+        <span
+          class="badge bg-danger"
+          *ngIf="(username.dirty || username.touched) && username.errors?.['maxlength']"
+        >
+          Username phải có độ dài nhiều nhất 20 kí tự
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="txtPassword">Password: </label>
+        <input
+          type="password"
+          id="txtPassword"
+          name="txtPassword"
+          class="form-control mb-2"
+          required="required"
+          minlength="8"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-]).{8,}"
+          [(ngModel)]="user.password"
+          #password="ngModel"
+        />
+        <span
+          class="badge bg-danger"
+          *ngIf="(password.dirty || password.touched) && password.errors?.['required']"
+        >
+          Vui lòng nhập Password
+        </span>
+        <span
+          class="badge bg-danger"
+          *ngIf="(password.dirty || password.touched) && password.errors?.['minlength']"
+        >
+          Password phải có độ dài ít nhất 8 kí tự
+        </span>
+        <span
+          class="badge bg-danger"
+          *ngIf="(password.dirty || password.touched) && password.errors?.['pattern']"
+        >
+          Password phải chứa a-z, A-Z, 0-9 và chứa ít nhất 1 kí tự đặc biệt
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="txtFullname">Fullname: </label>
+        <input
+          type="text"
+          id="txtFullname"
+          name="txtFullname"
+          class="form-control mb-2"
+          required="required"
+          minlength="6"
+          [(ngModel)]="user.fullname"
+          #fullname="ngModel"
+        />
+        <span
+          class="badge bg-danger"
+          *ngIf="(fullname.dirty || fullname.touched) && fullname.errors?.['required']"
+        >
+          Vui lòng nhập Fullname
+        </span>
+        <span
+          class="badge bg-danger"
+          *ngIf="(fullname.dirty || fullname.touched) && fullname.errors?.['minlength']"
+        >
+          Username phải có độ dài ít nhất 6 kí tự
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="txtEmail">Email: </label>
+        <input
+          type="email"
+          id="txtEmail"
+          name="txtEmail"
+          class="form-control"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          required="required"
+          [(ngModel)]="user.email"
+          #email="ngModel"
+        />
+        <span
+          class="badge bg-danger"
+          *ngIf="(email.dirty || email.touched) && email.errors?.['required']"
+        >
+          Vui lòng nhập Email
+        </span>
+        <span
+          class="badge bg-danger"
+          *ngIf="(email.dirty || email.touched) && email.errors?.['pattern']"
+        >
+          Email chưa đúng định dạng
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="txtPhone">Phone: </label>
+        <input
+          type="text"
+          id="txtPhone"
+          name="txtPhone"
+          class="form-control"
+          pattern="[0][0-9]{9}"
+          required="required"
+          [(ngModel)]="user.phone"
+          #phone="ngModel"
+        />
+        <span
+          class="badge bg-danger"
+          *ngIf="(phone.dirty || phone.touched) && phone.errors?.['required']"
+        >
+          Vui lòng nhập số điện thoại
+        </span>
+        <span
+          class="badge bg-danger"
+          *ngIf="(phone.dirty || phone.touched) && phone.errors?.['pattern']"
+        >
+          Số điện thoại chưa đúng định dạng (Phải đủ 10 số và bắt đầu bằng số 0)
+        </span>
+      </div>
+
+      <div class="text-center">
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i>
+            Save
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="onResetForm(frmUser)"
+          >
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+            Reset
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

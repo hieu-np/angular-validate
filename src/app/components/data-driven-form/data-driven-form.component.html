@@ -1,0 +1,185 @@
+<div class="card border border-success">
+  <div class="card-header bg-success text-white fw-bold">Data Driven Form</div>
+  <div class="card-body">
+    <form [formGroup]="frmUserData" (ngSubmit)="onSubmitForm()">
+      <div class="form-group mb-3">
+        <label for="txtusername">Username: </label>
+        <input
+          type="text"
+          id="txtusername"
+          name="txtusername"
+          class="form-control mb-2"
+          formControlName="username"
+        />
+        <!-- <span
+          class="badge bg-danger"
+          *ngIf="(
+              frmUserData.controls['username'].dirty 
+          ||  frmUserData.controls['username'].touched)
+          &&  frmUserData.controls['username'].errors?.['required']"
+        >
+          Vui lòng nhập Username
+        </span>
+        <span
+          class="badge bg-danger"
+          *ngIf="(
+              frmUserData.controls['username'].dirty 
+          ||  frmUserData.controls['username'].touched)
+          &&  frmUserData.controls['username'].errors?.['minlength']"
+        >
+          Vui lòng nhập Username ít nhất 5 kí tự
+        </span> -->
+
+        <app-error-validate 
+          [control]="frmUserData.controls['username']"
+        >
+
+        </app-error-validate>
+        <span
+          class="badge bg-danger"
+          *ngIf="(
+              frmUserData.controls['username'].dirty 
+          ||  frmUserData.controls['username'].touched)
+          &&  frmUserData.controls['username'].errors?.['maxlength']"
+        >
+          Username tối đa 20 kí tự
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="txtpassword">Password: </label>
+        <input
+          type="password"
+          id="txtpassword"
+          name="txtpassword"
+          class="form-control mb-2"
+          formControlName="password"
+        />
+        <span
+          class="badge bg-danger"
+          *ngIf="(
+              frmUserData.controls['password'].dirty 
+          ||  frmUserData.controls['password'].touched)
+          &&  frmUserData.controls['password'].errors?.['required']"
+        >
+          Vui lòng nhập Password
+        </span>
+        <span
+          class="badge bg-danger text-start"
+          *ngIf="(
+              frmUserData.controls['password'].dirty 
+          ||  frmUserData.controls['password'].touched)
+          &&  frmUserData.controls['password'].errors?.['pattern']"
+        >
+        Password ít nhất 8 kí tự và nhiều nhất 64 kí tự <br> 
+        Phải chứa a-z, A-Z 0-9 và ít nhất 1 kí tự đặc biệt
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="txtfullname">Fullname: </label>
+        <input
+          type="text"
+          id="txtfullname"
+          name="txtfullname"
+          class="form-control"
+          formControlName="fullname"
+        />
+
+        <span
+          class="badge bg-danger"
+          *ngIf="(
+              frmUserData.controls['fullname'].dirty 
+          ||  frmUserData.controls['fullname'].touched)
+          &&  frmUserData.controls['fullname'].errors?.['required']"
+        >
+          Vui lòng nhập Fullname
+        </span>
+        <span
+          class="badge bg-danger"
+          *ngIf="(
+              frmUserData.controls['fullname'].dirty 
+          ||  frmUserData.controls['fullname'].touched)
+          &&  frmUserData.controls['fullname'].errors?.['minlength']"
+        >
+          Vui lòng nhập Fullname ít nhất 6 kí tự
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="txtemail">Email: </label>
+        <input
+          type="email"
+          id="txtemail"
+          name="txtemail"
+          class="form-control"
+          formControlName="email"
+        />
+        <span
+          class="badge bg-danger"
+          *ngIf="(
+              frmUserData.controls['email'].dirty 
+          ||  frmUserData.controls['email'].touched)
+          &&  frmUserData.controls['email'].errors?.['required']"
+        >
+          Vui lòng nhập Email
+        </span>
+        <span
+          class="badge bg-danger text-start"
+          *ngIf="(
+              frmUserData.controls['email'].dirty 
+          ||  frmUserData.controls['email'].touched)
+          &&  frmUserData.controls['email'].errors?.['pattern']"
+        >
+        Email chưa đúng định dạng
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="txtphone">Phone: </label>
+        <input
+          type="text"
+          id="txtphone"
+          name="txtphone"
+          class="form-control"
+          formControlName="phone"
+        />
+        <span
+          class="badge bg-danger"
+          *ngIf="(
+              frmUserData.controls['phone'].dirty 
+          ||  frmUserData.controls['phone'].touched)
+          &&  frmUserData.controls['phone'].errors?.['required']"
+        >
+          Vui lòng nhập Phone
+        </span>
+        <span
+          class="badge bg-danger text-start"
+          *ngIf="(
+              frmUserData.controls['phone'].dirty 
+          ||  frmUserData.controls['phone'].touched)
+          &&  frmUserData.controls['phone'].errors?.['pattern']"
+        >
+        Phone chưa đúng định dạng
+        </span>
+      </div>
+
+      <div class="text-center">
+        <div class="btn-group">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="frmUserData.invalid"
+          >
+            <i class="fa-solid fa-floppy-disk"></i>
+            Save
+          </button>
+          <button type="button" class="btn btn-warning" (click)="onResetForm()">
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+            Reset
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
